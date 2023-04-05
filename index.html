@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Digital Clock</title>
+</head>
+
+
+<body>
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Digital Clock</title>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap" rel="stylesheet">
+    </head>
+    <body>
+	<div class="container">
+		<div id="clock"></div>
+	</div>
+
+        <script>
+
+            /* -------Brief Description-----------
+
+            1) First, we select the #clock element from the HTML document using document.querySelector().
+            2) We create a function called updateClock() which gets the current time using the Date() object, and formats the time into hours, minutes, and seconds using string manipulation.
+            3) The formatted time is then set as the text content of the #clock element using the textContent property.
+            4) We call the updateClock() function once to initialize the clock.
+            5) Finally, we use the setInterval() method to call the updateClock() function every second, which updates the clock on the page.
+            */
+
+            function updateClock() {
+                var currentTime = new Date(); // Get the current time
+                var hours = currentTime.getHours(); // Extract the hours
+                var minutes = currentTime.getMinutes(); // Extract the minutes
+                var seconds = currentTime.getSeconds(); // Extract the seconds
+                var meridiem = "AM"; // Default to AM
+            
+                // Convert the hours component to 12-hour format if needed
+                if (hours > 12) {
+                    hours = hours - 12;
+                    meridiem = "PM";
+                }
+            
+                // Convert an hour component of "0" to "12"
+                if (hours === 0) {
+                    hours = 12;
+                }
+            
+                // Pad the minutes and seconds components with leading zeros if needed
+                if (minutes < 10) {
+                    minutes = "0" + minutes;
+                }
+                if (seconds < 10) {
+                    seconds = "0" + seconds;
+                }
+            
+                // Compose the string for display
+                var clockTime = hours + ":" + minutes + ":" + seconds + " " + meridiem;
+            
+                // Update the clock display
+                document.getElementById("clock").innerHTML = clockTime;
+            }
+            
+            // Call the updateClock function once to initialize the clock
+            updateClock();
+            
+            // Update the clock every second using setInterval method
+            setInterval(updateClock, 1000);
+            </script>
+            
+    </body>
+    </html>
+    
+</body>
+</html>
